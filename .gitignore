@@ -1,0 +1,12 @@
+conf/application.conf
+.settings
+target
+.target
+bin
+logs
+.cache
+.classpath
+.project
+project/project
+project/target
+datamodel.owl
