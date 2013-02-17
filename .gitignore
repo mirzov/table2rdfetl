@@ -9,4 +9,4 @@ logs
 .project
 project/project
 project/target
-datamodel.owl
+data.owl

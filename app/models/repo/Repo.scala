@@ -3,11 +3,11 @@ package models
 package object repo{
 	import com.typesafe.config.ConfigFactory
 	
-	private def pathToRdf: String = {
+	private def pathsToRdf: Seq[String] = {
 		val config = ConfigFactory.load()
-    	return config.getString("db.rdffile")
-  	}
+		return Seq("db.ontofile", "db.datafile").map(config.getString(_)) 
+ 	}
 	
-	object Repo extends SesameInMemoryRepo(pathToRdf) 
+	object Repo extends SesameInMemoryRepo(pathsToRdf) 
 }
 

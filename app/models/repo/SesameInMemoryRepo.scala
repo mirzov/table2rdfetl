@@ -8,7 +8,7 @@ import java.io.File
 import org.openrdf.rio.RDFFormat
 import org.openrdf.model.Resource
 
-class SesameInMemoryRepo(pathToRdf: String) extends SesameCompliantRepo {
+class SesameInMemoryRepo(pathsToRdf: Seq[String]) extends SesameCompliantRepo {
 	
 	private val repo: Repository = new SailRepository(new MemoryStore())
 	repo.initialize()
@@ -16,7 +16,9 @@ class SesameInMemoryRepo(pathToRdf: String) extends SesameCompliantRepo {
 	val graph = factory.createURI("http://www.canmove.lu.se/data/prototype/")
 	
 	transaction(conn => {
-		conn.add(new File(pathToRdf), "", RDFFormat.RDFXML, graph)
+		for(pathToRdf <- pathsToRdf){
+			conn.add(new File(pathToRdf), "", RDFFormat.RDFXML, graph)
+		}
 	})
 	
 	def access[T](body: RepositoryConnection => T): T = {
