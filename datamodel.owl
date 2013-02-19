@@ -54,6 +54,15 @@
     
 
 
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/belongsToSpecies -->
+
+    <owl:ObjectProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/belongsToSpecies">
+        <rdfs:range rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Species"/>
+        <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Subject"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.canmove.lu.se/data/prototype/datamodel/conductedBy -->
 
     <owl:ObjectProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/conductedBy">
@@ -69,6 +78,15 @@
         <rdf:type rdf:resource="&owl;InverseFunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Experiment"/>
         <rdfs:range rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Measurement"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/hasSubject -->
+
+    <owl:ObjectProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/hasSubject">
+        <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Measurement"/>
+        <rdfs:range rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Subject"/>
     </owl:ObjectProperty>
     
 
@@ -102,11 +120,60 @@
     
 
 
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/latinName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/latinName">
+        <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Species"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/maxAltitude -->
+
+    <owl:DatatypeProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/maxAltitude">
+        <rdfs:comment>maximal altitude registered during an experiment, in meters</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/AnimalMigrationMeasurement"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.canmove.lu.se/data/prototype/datamodel/name -->
 
     <owl:DatatypeProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/name">
         <rdf:type rdf:resource="&owl;FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Researcher"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/subjectId -->
+
+    <owl:DatatypeProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/subjectId">
+        <rdf:type rdf:resource="&owl;FunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Subject"/>
+        <rdfs:range rdf:resource="&xsd;string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/timeStamp -->
+
+    <owl:DatatypeProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/timeStamp">
+        <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Measurement"/>
+        <rdfs:range rdf:resource="&xsd;dateTimeStamp"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/weight -->
+
+    <owl:DatatypeProperty rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/weight">
+        <rdfs:comment>subject weight in kg</rdfs:comment>
+        <rdfs:domain rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/AnimalMigrationMeasurement"/>
+        <rdfs:range rdf:resource="&xsd;float"/>
     </owl:DatatypeProperty>
     
 
@@ -119,6 +186,14 @@
     ///////////////////////////////////////////////////////////////////////////////////////
      -->
 
+    
+
+
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/AnimalMigrationMeasurement -->
+
+    <owl:Class rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/AnimalMigrationMeasurement">
+        <rdfs:subClassOf rdf:resource="http://www.canmove.lu.se/data/prototype/datamodel/Measurement"/>
+    </owl:Class>
     
 
 
@@ -146,7 +221,15 @@
     
 
 
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/Species -->
+
+    <owl:Class rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/Species"/>
     
+
+
+    <!-- http://www.canmove.lu.se/data/prototype/datamodel/Subject -->
+
+    <owl:Class rdf:about="http://www.canmove.lu.se/data/prototype/datamodel/Subject"/>
 </rdf:RDF>
 
 
