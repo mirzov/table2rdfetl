@@ -16,7 +16,9 @@ object ApplicationBuild extends Build {
 		"org.openrdf.sesame" % "sesame-queryresultio-text" % sesameVersion,
 		"org.openrdf.sesame" % "sesame-repository-sail" % sesameVersion,
 		"org.openrdf.sesame" % "sesame-sail-memory" % sesameVersion,
-		"org.openrdf.sesame" % "sesame-rio-rdfxml" % sesameVersion
+		"org.openrdf.sesame" % "sesame-rio-rdfxml" % sesameVersion,
+		"net.sf.opencsv" % "opencsv" % "2.3",
+		"org.scalatest" % "scalatest_2.10" % "1.9.1" % "test"
 	)
   
   	val main = play.Project(appName, appVersion, appDependencies).settings(
