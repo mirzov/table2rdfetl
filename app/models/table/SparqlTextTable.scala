@@ -4,6 +4,7 @@ import org.openrdf.query.TupleQueryResult
 import scala.collection.JavaConversions._
 import org.openrdf.query.BindingSet
 import org.openrdf.model._
+import etl._
 
 
 class SparqlTextTable(qRes: TupleQueryResult) extends TextTable {
@@ -30,9 +31,10 @@ class SparqlTextTable(qRes: TupleQueryResult) extends TextTable {
 			case n if(null == n) => ""
 			case uri: URI => uri.stringValue
 			case lit: Literal => {
-				val dataType = lit.getDatatype
-				if(dataType == null) lit.stringValue
-				else lit.stringValue + "^^" + dataType.stringValue
+				lit.stringValue
+//				val dataType = lit.getDatatype
+//				if(dataType == null) lit.stringValue
+//				else lit.stringValue + "^^" + dataType.stringValue
 			}
 			case blank: BNode => blank.getID
 		}

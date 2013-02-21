@@ -8,9 +8,9 @@ import models.table.SparqlTextTable
 
 object Application extends Controller {
   
-  def index = Action {
-    Ok(views.html.index("Your new application is ready."))
-  }
+	def index = Action {
+		Ok(views.html.index())
+	}
   
   	def sparql(query: String) = Action {
   		val qres = Repo.runSparql(query)
