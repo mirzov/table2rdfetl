@@ -27,13 +27,13 @@ object CodeGenerator {
 		def getUrisOfType(uriType: URI): Seq[String] = 
 			conn.getStatements(null, RDF.TYPE, uriType, true).toStream
 			.map(st => st.getSubject).collect{
-				case uri: URI => nsMap.getOrElse(uri.getNamespace, uri.getNamespace) + ":" + uri.getLocalName
+				case uri: URI => uri.stringValue//nsMap.getOrElse(uri.getNamespace, uri.getNamespace) + ":" + uri.getLocalName
 			}
 		
 		def printUrisOfType(uriType: URI, comment: String){
 			sb.append("\n\t//" + comment + "\n")
 			for(uri <- getUrisOfType(uriType)){
-				val name = uri.split(":").last
+				val name = uri.split("/").last
 				sb.append(s"""\tval $name = toURI("$uri")\n""")
 			}
 		}

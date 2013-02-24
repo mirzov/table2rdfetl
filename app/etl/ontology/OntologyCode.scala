@@ -9,27 +9,27 @@ object Ont{
 
 
 	//Classes
-	val AnimalMigrationMeasurement = toURI("dm:AnimalMigrationMeasurement")
-	val Experiment = toURI("dm:Experiment")
-	val Measurement = toURI("dm:Measurement")
-	val ResearchProject = toURI("dm:ResearchProject")
-	val Researcher = toURI("dm:Researcher")
-	val Species = toURI("dm:Species")
-	val Subject = toURI("dm:Subject")
+	val AnimalMigrationMeasurement = toURI("http://www.canmove.lu.se/data/prototype/datamodel/AnimalMigrationMeasurement")
+	val Experiment = toURI("http://www.canmove.lu.se/data/prototype/datamodel/Experiment")
+	val Measurement = toURI("http://www.canmove.lu.se/data/prototype/datamodel/Measurement")
+	val ResearchProject = toURI("http://www.canmove.lu.se/data/prototype/datamodel/ResearchProject")
+	val Researcher = toURI("http://www.canmove.lu.se/data/prototype/datamodel/Researcher")
+	val Species = toURI("http://www.canmove.lu.se/data/prototype/datamodel/Species")
+	val Subject = toURI("http://www.canmove.lu.se/data/prototype/datamodel/Subject")
 
 	//Object properties
-	val belongsToSpecies = toURI("dm:belongsToSpecies")
-	val conductedBy = toURI("dm:conductedBy")
-	val hasMeasurement = toURI("dm:hasMeasurement")
-	val hasSubject = toURI("dm:hasSubject")
-	val isRelatedToProject = toURI("dm:isRelatedToProject")
-	val worksOn = toURI("dm:worksOn")
+	val belongsToSpecies = toURI("http://www.canmove.lu.se/data/prototype/datamodel/belongsToSpecies")
+	val conductedBy = toURI("http://www.canmove.lu.se/data/prototype/datamodel/conductedBy")
+	val hasMeasurement = toURI("http://www.canmove.lu.se/data/prototype/datamodel/hasMeasurement")
+	val hasSubject = toURI("http://www.canmove.lu.se/data/prototype/datamodel/hasSubject")
+	val isRelatedToProject = toURI("http://www.canmove.lu.se/data/prototype/datamodel/isRelatedToProject")
+	val worksOn = toURI("http://www.canmove.lu.se/data/prototype/datamodel/worksOn")
 
 	//Datatype properties
-	val latinName = toURI("dm:latinName")
-	val maxAltitude = toURI("dm:maxAltitude")
-	val name = toURI("dm:name")
-	val subjectId = toURI("dm:subjectId")
-	val timeStamp = toURI("dm:timeStamp")
-	val weight = toURI("dm:weight")
+	val latinName = toURI("http://www.canmove.lu.se/data/prototype/datamodel/latinName")
+	val maxAltitude = toURI("http://www.canmove.lu.se/data/prototype/datamodel/maxAltitude")
+	val name = toURI("http://www.canmove.lu.se/data/prototype/datamodel/name")
+	val subjectId = toURI("http://www.canmove.lu.se/data/prototype/datamodel/subjectId")
+	val timeStamp = toURI("http://www.canmove.lu.se/data/prototype/datamodel/timeStamp")
+	val weight = toURI("http://www.canmove.lu.se/data/prototype/datamodel/weight")
 }
