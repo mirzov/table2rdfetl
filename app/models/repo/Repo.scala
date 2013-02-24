@@ -5,7 +5,8 @@ package object repo{
 	
 	private def pathsToRdf: Seq[String] = {
 		val config = ConfigFactory.load()
-		return Seq("db.ontofile", "db.datafile").map(config.getString(_)) 
+		val home = config.getString("app.home")
+		return Seq("db.ontofile", "db.datafile").map(home + config.getString(_)) 
  	}
 	
 	object Repo extends SesameInMemoryRepo(pathsToRdf) 
