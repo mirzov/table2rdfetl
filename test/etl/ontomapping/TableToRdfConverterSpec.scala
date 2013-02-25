@@ -24,7 +24,7 @@ class TableToRdfConverterSpec extends FunSpec {
 		
 		val key = Key.columnBased(Ont.Species, "SUBJID")
 		
-		val conv = new TableToRdfConverter(map, key)
+		val conv = new TableToRdfConverter(key, map, Nil)
 		val ss = conv.getStatements(tbl, new ValueFactoryImpl())
 		
 		it("emits correct number of RDF statements"){

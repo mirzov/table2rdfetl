@@ -7,6 +7,7 @@ import org.openrdf.model.ValueFactory
 import org.openrdf.model.Literal
 import org.openrdf.model.Statement
 import org.openrdf.model.vocabulary.RDF
+import scala.collection.mutable.ArrayBuffer
 
 sealed trait ColumnDestination{
 	def predicate: URI
@@ -22,35 +23,32 @@ class PlainLiteralColumn(val predicate: URI) extends ColumnDestination{
 	def obj(in: String, factory: ValueFactory): Literal = factory.createLiteral(in)
 }
 
-class RelationColumn(val predicate: URI, targetKey: Key) extends ColumnDestination{
-	def obj(in: String, factory: ValueFactory): URI = factory.createURI(in)
-}
 
-class ReverseRelationColumn(val predicate: URI, targetKey: Key) extends ColumnDestination{
-	def obj(in: String, factory: ValueFactory): URI = factory.createURI(in)
-}
-
-class TableToRdfConverter(map: Map[String, ColumnDestination], key: Key) {
+class TableToRdfConverter(key: Key, map: Map[String, ColumnDestination], relations: Seq[Relation]) {
 
 	def getStatements(table: TextTable, factory: ValueFactory): Seq[Statement] = {
 		val cols = table.columnNames.intersect(map.keys.toSeq)
-		(for(row <- table.rows;
-			subj = factory.createURI(key.makeKey(row).toString);
-			col <- cols;
-			dest = map(col)
-		) yield dest match {
-		 	case dest: ReverseRelationColumn => 
-		 		val predicate = dest.predicate;
+		table.rows.flatMap(row => {
+		  
+			val subj = factory.createURI(key.makeKey(row).toString)
+			
+			val ownTypeStat = factory.createStatement(subj, RDF.TYPE, key.classUri)
+			
+			val relStats = for(rel <- relations) yield {
+				val otherEnd = factory.createURI(rel.key.makeKey(row).toString)
+				rel match {
+				  case to: RelationTo => factory.createStatement(subj, to.predicate, otherEnd)
+				  case from: RelationFrom => factory.createStatement(otherEnd, from.predicate, subj)
+				}
+			}
+			
+			val colValStats = for(col <- cols) yield{
+				val dest = map(col)
 		 		val obj = dest.obj(row(col), factory)
-		 		factory.createStatement(obj, predicate, subj)
-		 	case dest =>
-		 		val predicate = dest.predicate;
-		 		val obj = dest.obj(row(col), factory)
-		 		factory.createStatement(subj, predicate, obj)
-		}) ++
-		(for(row <- table.rows) yield {
-			val subj = factory.createURI(key.makeKey(row).toString);
-			factory.createStatement(subj, RDF.TYPE, key.classUri)
+		 		factory.createStatement(subj, dest.predicate, obj)
+			}
+			
+			ownTypeStat +: (relStats ++ colValStats)
 		})
 	}
   

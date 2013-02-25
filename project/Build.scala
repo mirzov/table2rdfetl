@@ -4,7 +4,7 @@ import play.Project._
 
 object ApplicationBuild extends Build {
 
-	val appName         = "canmoveprototype"
+	val appName         = "table2rdfetl"
 	val appVersion      = "1.0"
 
 	val sesameVersion   = "2.6.10"
@@ -23,7 +23,7 @@ object ApplicationBuild extends Build {
   
   	val main = play.Project(appName, appVersion, appDependencies).settings(
   		//testOptions in Test := Nil,
-  		organization := "se.lu.canmove",
+  		organization := "com.mirzov.oleg",
   	    scalaVersion := "2.10.0",
 		autoScalaLibrary := true,
 		resolvers ++= Seq(
