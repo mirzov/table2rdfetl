@@ -1,4 +1,5 @@
 import etl.transforms.DropColumns
+import etl.transforms.FilterRows
 
 package object etl{
 
@@ -15,6 +16,8 @@ package object etl{
 		}
 		
 		def dropColumns(cols: String*): TextTable = new DropColumns(tbl, cols:_*)
+		
+		def where(filter: TextTableRow => Boolean): TextTable = new FilterRows(tbl, filter)
 	}
 
 }

@@ -18,8 +18,8 @@ class TableToRdfConverterSpec extends FunSpec {
 		)
 		
 		val map = Map(
-		    "WEIGHT" -> new TypedLiteralColumn(Ont.weight, XMLSchema.FLOAT),
-		    "SPECIES" -> new PlainLiteralColumn(Ont.belongsToSpecies)
+		    "WEIGHT" -> Column.float(Ont.weight),
+		    "SPECIES" -> Column.plain(Ont.belongsToSpecies)
 		)
 		
 		val key = Key.columnBased(Ont.Species, "SUBJID")
